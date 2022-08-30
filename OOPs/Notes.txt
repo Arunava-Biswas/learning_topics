@@ -1,0 +1,190 @@
+-- Classes:
+- A class is a collection of objects. A class contains the blueprints or the prototype from which the objects are being created. It is a logical entity that contains some attributes and methods.
+- Classes are created by keyword 'class'.
+- Attributes are the variables that belong to class.
+- Attributes are always public and can be accessed using dot (.) operator. Eg.: Myclass.Myattribute
+
+
+
+
+-- Objects:
+- An Object is an instance of a Class. A class is like a blueprint while an instance is a copy of the class with actual values.
+- The object is an entity that has a state and behavior associated with it. It may be any real-world object like a mouse, keyboard, chair, table, pen, etc. Integers, strings, floating-point numbers, even arrays, and dictionaries, are all objects.
+- When an object of a class is created, the class is said to be instantiated. All the instances share the attributes and the behavior of the class. But the values of those attributes, i.e. the state are unique for each object. A single class may have any number of instances.
+
+- An object consists of :
+- State: It is represented by the attributes of an object. It also reflects the properties of an object.
+- Behavior: It is represented by the methods of an object. It also reflects the response of an object to other objects.
+- Identity: It gives a unique name to an object and enables one object to interact with other objects.
+
+
+
+
+-- The 'self':
+- Class methods must have an extra first parameter in the method definition. We do not give a value for this parameter when we call the method, Python provides it.
+- If we have a method that takes no arguments, then we still have to have one argument.
+- "self" represents the instance of the class. By using the “self”  we can access the attributes and methods of the class in python. It binds the attributes with the given arguments.
+
+- Characteristics of "self":
+- Self is always pointing to Current Object.
+- Self is the first argument to be passed in Constructor and Instance Method.
+- Self is a convention and not a Python keyword.
+
+
+
+
+-- The '__init__()':
+- The Default __init__ Constructor is used to initializing the object’s state. The task of constructors is to initialize(assign values) to the data members of the class when an object of the class is created. Like methods, a constructor also contains a collection of statements(i.e. instructions) that are executed at the time of Object creation. It runs as soon as an object of a class is instantiated.
+
+
+
+-- Class and instance attributes:
+- Instance variables are for data, unique to each instance and class variables are for attributes and methods shared by all instances of the class. Instance variables are variables whose value is assigned inside a constructor or method with self whereas class variables are variables whose value is assigned in the class.
+
+--- See codes in 'learning/1-class_obj.py'
+
+
+
+
+
+-- Inheritance:
+- Inheritance is the capability of one class to derive or inherit the properties from another class. The class that derives properties is called the derived class or child class and the class from which the properties are being derived is called the base class or parent class.
+- It represents real-world relationships well.
+- It provides the re-usability of a code. We don’t have to write the same code again and again. Also, it allows us to add more features to a class without modifying it.
+- It is transitive in nature, which means that if class B inherits from another class A, then all the subclasses of B would automatically inherit from class A.
+
+- Python provides a function 'issubclass()' that directly tells us if a class is subclass of another class.
+- 'isinstance()' returns whether an object is an instance of a class or of a subclass thereof.
+- We can access the parent members in a subclass either by using the parent class name or by using the super().
+
+-- See code in 'learning/2-inheritance.py'
+
+
+
+
+-- Types of Inheritance:
+Single Inheritance:
+- Single-level inheritance enables a derived class to inherit characteristics from a single-parent class.
+
+Multilevel Inheritance:
+- Multi-level inheritance enables a derived class to inherit properties from an immediate parent class which in turn inherits properties from his parent class.
+
+Hierarchical Inheritance:
+- Hierarchical level inheritance enables more than one derived class to inherit properties from a parent class.
+
+Multiple Inheritance:
+- Multiple level inheritance enables one derived class to inherit properties from more than one base class. During multiple inheritance the derived class will give priority to class and attributes of the first mentioned class in the bracket if there is a conflict of attribute or method name between the parent classes.
+
+Hybrid inheritance:
+- This form combines more than one form of inheritance. Basically, it is a blend of more than one type of inheritance.
+
+-- See code in 'learning/3-inher_levels.py'
+
+
+
+
+-- Polymorphism:
+-  The word polymorphism means having many forms. In programming, polymorphism means the same function name (but different signatures) being used for different types.
+- In Python, Polymorphism lets us define methods in the child class that have the same name as the methods in the parent class. In inheritance, the child class inherits the methods from the parent class. However, it is possible to modify a method in a child class that it has inherited from the parent class. This is particularly useful in cases where the method inherited from the parent class does not quite fit the child class. In such cases, we re-implement the method in the child class. This process of re-implementing a method in the child class is known as Method Overriding.
+- It is also possible to create a function that can take any object, allowing for polymorphism.
+
+-- See code in 'learning/4-poly.py'
+
+
+
+
+-- Abstraction:
+- The abstraction is used to hide the unnecessary code details from the user. Also, when we do not want to give out sensitive parts of our code implementation we use data abstraction.
+- Data Abstraction in Python can be achieved through creating abstract classes.
+- So by Data Abstraction we stop a user from accessing a data directly from the class.
+
+- PUBLIC: These are normal attributes and methods, can be accessed from anywhere.
+
+- PROTECTED: These are defined by a single underscore or '_' before the attribute or method name. These can be accessed from the class they are defined in and the classes derived from this class (Sub classes). These can also be accessed from outside using the following syntax:
+_ProtectedAttributeName
+
+- PRIVATE: These are defined by a double underscore or '__' before the attribute or method name. The private variables are accessible outside their class, just not easily accessible. Through Private, we can hide the data behind the class where the Private variable is declared, as in this case no one can access the variable directly from outside through a class. To call them from outside the class they are defined in we need to use the following syntax:
+_ClassName__PrivateAttributeName
+
+-- See code in 'learning/5-abstract.py'
+
+
+
+-- Encapsulation:
+- Encapsulation is one of the fundamental concepts in object-oriented programming (OOP). It describes the idea of wrapping data and the methods that work on data within one unit. This puts restrictions on accessing variables and methods directly and can prevent the accidental modification of data.
+- Remember if we have a private variable inside a class then with the help of the object of that class we will not be able to reassign any value to that variable. To do that we will need to create another method separately in that class (setter method: to set a new value). Then by calling that method of that class it is possible to change the value of that private variable.
+- So Encapsulation concept is not to allow a user to modify a value of a variable (private) directly during the runtime, to do that the user must take a class method defined for that particular purpose.
+
+-- See code in 'learning/6-encap.py'
+
+
+
+
+- Difference between Encapsulation and Abstraction:
+- In Abstraction we restrict a user from accessing directly a variable of a class meaning we are hiding the data behind the class.
+- Whereas Encapsulation stops from modifying the data directly during runtime.
+- So if we want to restrict the access we use Abstraction and if we want to restrict the modification we use Encapsulation.
+
+
+
+
+
+-- Method Overriding
+- When there is a same named method exist in both parent and child class, and in the child class if we redefine the method then it is going to override the previous one i.e. the method it inherits from the parent class, it is called Method Overriding.
+- Parent’s class methods can be called by using the Parent 'classname.method' inside the overridden method.
+- Python super() function provides us the facility to refer to the parent class explicitly. It is basically useful where we have to call superclass functions. It returns the proxy object that allows us to refer parent class by ‘super’.
+
+-- See code in 'learning/7-method_overriding.py'
+
+
+
+-- super():
+- The Python super() function returns objects represented in the parent’s class and enables multiple inheritances.
+– There are no parameters in super()
+- In an inherited subclass, a parent class can be referred to with the use of the super() function. The super function returns a temporary object of the superclass that allows access to all of its methods to its child class.
+
+-- The benefits of using a superclass are:-
+- Need not remember or specify the parent class name to access its methods. This function can be used both in single and multiple inheritances.
+- This implements modularity (isolating changes) and code re-usability as there is no need to rewrite the entire function.
+- Super function in Python is called dynamically because Python is a dynamic language, unlike other languages.
+
+-- There are 3 constraints to using the super function:-
+- The class and its methods which are referred to by the super function
+- The arguments of the super function and the called function should match.
+- Every occurrence of the method must include super() after you use it.
+
+-- See code in 'learning/8-super.py'
+
+
+
+-- Class methods and Static methods:
+- The classmethod() is an inbuilt function in Python, which returns a class method for a given function.
+- There can be some functionality that relates to the class, but does not require any instance(s) to do some work, static methods can be used in such cases. A static method is a method which is bound to the class and not the object of the class. It can’t access or modify class state. It is present in a class because it makes sense for the method to be present in class. A static method does not receive an implicit first argument.
+
+- Class method vs Static Method
+- A class method takes cls as the first parameter while a static method needs no specific parameters.
+- A class method can access or modify the class state while a static method can’t access or modify it.
+- In general, static methods know nothing about the class state. They are utility-type methods that take some parameters and work upon those parameters. On the other hand class methods must have class as a parameter.
+- We use @classmethod decorator in python to create a class method, and we use @staticmethod decorator to create a static method in python.
+
+- A method should be a static method if we don't access an instance or the class anywhere within the defined function, else if we have to access the instance or the class through that function then it must be a class method.
+
+-- See code in 'learning/9-class-static_methods.py'
+
+
+
+-- Special / Magic / Dunder methods:
+- We can also perform operator overloading using these special methods.
+- Special methods are called Dunder methods as they are surrounded with '__' like '__methodName__'.
+- The '__init__()' itself is a special method.
+- Other than this, two most common special methods are '__repr__()' and '__str__()'.
+
+-- See code in 'learning/10-special_methods.py'
+
+
+
+-- Is it allowed to write multiple constructors(__init__) in a class in Python?
+- When writing program in other languages like (Java, .net, etc.)  we can create multiple constructors in the same class to initialize different parameters in it. But in python the last constructor we make will override the previous constructors. So in normal circumstances we cannot create multiple constructors in python for a same class.
+
+
+-- See code in 'learning/11-mult_const.py'
