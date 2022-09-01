@@ -1,0 +1,12 @@
+ Volume in drive F is New Volume
+ Volume Serial Number is 18B3-E82C
+
+ Directory of F:\Pycharm_python\learning_topics\Processes
+
+01-Sep-22  07:00 AM    <DIR>          .
+01-Sep-22  07:00 AM    <DIR>          ..
+01-Sep-22  07:00 AM                 0 output.txt
+01-Sep-22  07:00 AM             3,248 subprocesses.py
+01-Sep-22  06:17 AM               234 subprocesses.txt
+               3 File(s)          3,482 bytes
+               2 Dir(s)  64,491,438,080 bytes free
