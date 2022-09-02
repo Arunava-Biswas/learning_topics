@@ -1,0 +1,39 @@
+-- BeautifulSoup and Requests:
+
+- BeautifulSoup library is used to scrap websites i.e. parsing the contents from a website and pulling out exactly the information needed.
+- So let's create a scraper that will scrape all the post titles, summaries and link to the videos from the website 'coreyms.com' while ignoring all the other information.
+- The 'Request' library is popular to fetch website than the built-in module 'URL Lib' of the BeautifulSoup.
+
+- 1st we need to install the BeautifulSoup and Requests library using the pip install. Remember to install the latest one i.e. beautifulsoup4, as it has all the latest updates.
+
+pip install beautifulsoup4
+
+- Now we also need a parser to parse the html. There are different parsers that will give different results depending on the html to be parsed.
+Read more in detail from this link: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#differences-between-parsers
+- As the beautifulsoup documentation suggests to install the 'L XML' parser, so we are going to install that.
+- We can also use the 'html5lib' parser to use with html5 pages.
+
+pip install lxml
+or
+pip install html5lib
+
+- Now we are also going to need the Requests library, so need to install it also.
+
+pip install requests
+
+
+- For this we will use the 'beautifulSoup.py', 'scaper.py' and 'simple.html' file.
+
+- 1st we use the 'scraper.py' file to fetch the data from the 'simple.html' page.
+- Then we will use the 'beautifulSoup.py' file to fetch data from the website.
+
+- 1st pass the HTML in the BeautifulSoup, so we can get a beautifulSoup object. We can pass the HTML as a string, or we can also pass the html file.
+- The class BeautifulSoup takes 2 arguments, the file path and the parser.
+BeautifulSoup(file_path, 'parser')
+
+- Now to grab information from the html tag the easiest way is to just access the tag like an attribute.
+- We can also use the find() method to do the similar task, but it will also allow us to pass some arguments, so we can find the exact tag that we are looking for incase there are multiple tags of same name.
+- When we need to loop through all the tags with same className then instead of find() we use find_all().
+
+
+- Now using the same logic going to fetch from the actual website
