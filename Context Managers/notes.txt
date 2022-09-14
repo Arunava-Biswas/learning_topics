@@ -1,0 +1,33 @@
+                            -- Context Managers --
+
+- Context Managers allow us to properly manage resources so that we can specify exactly what we want to set up and tear down when working with certain objects.
+- As with file objects there are two ways of operations. First is the normal approach where we open the file then perform some functions in it, and then we close the file once we are done with it. The 2nd approach is using the with() clause to open and execute some action in the file. It is an example of 'Context Manager'. In this case we don't need to close the file after executing the actions, as in this case the file gets properly closed automatically even if there is an error in the file. We can say it is a context manager as there is a 'with' clause used in it.
+- Context Managers are so useful as it handles the teardown of the resources for us, so we don't have to remember to so it, and the more that is handled for us automatically the better.
+- We can use the same concept to connect to and close down databases automatically etc.
+
+- There are a couple of different ways to write custom context managers. We can either do this by using a class or by using a function with a decorator.
+
+- First we will replicate the functionality we use when working on a file. So here we create a context manager that will open a file for us and then automatically closes the file when we are done with it.
+- Here first we will use a class to create this context manager.
+
+- To see practical see 'using_class.py'
+
+
+- Now let's see creating a context manager using a function. To do this we will use the 'contextlib' module to import the context manager decorator.
+- Now we can use this 'contextmanager' decorator to decorate a generator function.
+- Here everything before the 'yield f' is equivalent to what our '__enter__' method to our class was in 'using_class.py'.
+- So it is the setup of the context manager.
+- The 'yield' is where the code with the 'with' statement is going to run.
+- Everything after the 'yield' statement is equivalent to the '__exit__' method of the 'using_class.py'.
+- It is the tear down of the context manager.
+
+- To see practical see 'using_function.py'
+
+
+-- Practical Example:
+- Here we use python to do some work in a lot of different directories, and we're constantly seeding into those directories doing some work and then seeding back to where we started.
+- So here we create some directories named as 'Sample-Dir-One' and 'Sample-Dir-Two' each having a few files.
+- But here saving the current directory and then switching to the destination directory is basically setting up for the work that needs to be done, then switching back to the original directory is the tear down process. So these are the things we don't need to remember to do, and we can do them through a context manager.
+
+-- See 'practical.py'
+-- See 'practical_context.py'
