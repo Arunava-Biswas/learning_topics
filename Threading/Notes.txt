@@ -1,0 +1,78 @@
+                            -- THREADING --
+
+- Here we will learn how to run code concurrently using the threading module.
+
+-- Why use threading?
+- Threading is used to significantly speed up the program. This speed up comes from running different tasks concurrently. Speed-ups are not guaranteed, it depends on what the program is doing.
+
+-- basic.py:
+- It is a basic example where we learn to run some simple sleep methods concurrently.
+- Here when we use the sleep(1) to add 1 second then the script not really doing anything to the CPU in that function, so the script is just waiting around sleeping for 1 second and once that is done it again performs the next task i.e. running the function again and then again wait for 1 second and again running the function.
+- Running everything in order like this is called "Running it Synchronously".
+- SO anytime a program runs synchronously, it actually is not doing anything on the CPU.
+- These are called "CPU bound" and "I/O bound" tasks.
+- CPU bound tasks: These are things that are crunching a lot of numbers and using the CPU.
+- I/O bound tasks: These are things that are waiting for input and output operations to be completed and not really using the CPU all that much.
+- In case of threading we can see benefits when our tasks are I/O bound, i.e. waiting a lot of time for input and output operations like reading data from disk, network operations.
+- In case the tasks are CPU bound we cannot get much of benefit from threading. In case of CPU bound tasks we need to use the Multi Processing and run it in parallel instead.
+- Now we will do the threading in the basic.py file in a new file named basic_thread.py
+
+
+-- basic_thread.py:
+- Here instead of running the function multiple times we create threads for each time.
+- Here the target is the function we want to pass in, but we don't want to execute the function here so don't pass the '()'
+- In order to get the threads run we need to use the start method on each thread.
+- But it will return the following result:
+
+Sleeping 1 second...
+Sleeping 1 second...
+Sleeping 1 second...
+Task finished in 0.0 second(s).
+
+Done Sleeping...
+Done Sleeping...
+Done Sleeping...
+
+- Here it first printed out the first lines from all the functions i.e. "Sleeping 1 second...", then it says that the script is finished in 0 seconds, and at last it prints "Done Sleeping..."
+- Here the script actually took 1 second to complete the tasks, but the reason it says that it completed in 0 seconds is because it started both of those threads and while the threads were sleeping, the script ran concurrently and continued on with the rest of the script. So it came down and calculate the finish time, and printed out the last print statement as the threads were still sleeping. And once that 1 second was up the threads continued on and printed that they were "Done Sleeping..."
+- Now if we want the threads to finish before the calculation of the finish time and before printing the finished comment.
+- To do this we can use the "join" method on all the threads after they start. Now they will complete before moving on to calculate the finish time and print the finish statement.
+- Now result will be:
+
+Sleeping 1 second...
+Sleeping 1 second...
+Sleeping 1 second...
+Done Sleeping...
+Done Sleeping...
+Done Sleeping...
+Task finished in 1.01 second(s).
+
+- When we run the threads in a loop we need to pass them after starting inside a list, and then we need to use the join() on each element of that list.
+- Here even though we run the function for 10 times, but it gets executed in 1 second as they are running concurrently.
+
+Task finished in 1.0 second(s).
+
+- Now passing arguments to the function, like how long we want the function to sleep. We need to pass the argument as a list. Here even when we pass 1.5 seconds for sleep and run the code for 10 times in a loop but instead of 15 seconds the code executed in 1.5 seconds as it is running concurrently.
+
+Task finished in 1.51 second(s).
+
+-- automatic.py:
+- Now we can see the automatic route to create and execute this threads, for this in Python 3.X we have something called 'thread pool executor', it is an easier and more efficient way to run these threads. And it also allows to easily switch over to using multiple processes instead of threads as well depending on the problem we are trying to solve.
+- This 'thread pool executor' is not in the threading module, it is in the 'concurrent.futures' module.
+- Also when using this executor it is best to use it with a context manager.
+- If we want our execution of function to take place once at a time we can use the 'submit()'. It will return a future object which is basically encapsulates the execution of the function and allows to check in on it after it's been scheduled. So we can check that if it is running, or it is done, and also check the result.
+- To run a multiple times we can use a loop, and to print the results we can use another function from the 'concurrent.futures' module named 'as completed'. It will return an iterator on which we can loop over and yield the results of the threads as they are completed.
+- If a function raised an exception, then it won't actually raise while running the thread, instead it would be raised when it's value is retrieved from the results iterator.
+
+
+
+-- download_images.py:
+- It is a real world example where we download some high resolution images from the internet.
+- In this script we download some high resolution photos from unsplash website.
+- If we download the images one at a time then to download all the 15 pictures it would take 23 seconds.
+- Now when we are downloading a lot of things online, this is actually a great candidate for use threading because this is one of those I/O bound operations that is actually spending a lot of time just waiting around. It is just going out and waiting for a response from the site, and it's not moving on to the next URL until that gets an entire response back so if we use threads then it can actually go ahead and move on to the next URL while that waiting around for a response, and we can make other requests at the same time.
+- In automation first we create a function that will download one image at a time, and then we can pass that function through a thread pool using map to execute that function on all the urls we have in the url list.
+- So here as we are using threads the requests will be made asynchronously instead of synchronous as it would have in a loop, and as a result the time it will take is far less than the previous occasion.
+- Here the time it takes is 8 seconds.
+
+- Now if something is doing a lots of computation then threads will not be an ideal for that type of task, so if we are processing the photos and resizing them and things like that instead of just downloading them, then the threads will not actually speed that up all that much. So it is actually an example of CPU bound and in this kind of scenarios threads can actually slow down the script instead of speeding up as threads have some over-headings when created and destroyed. So it really depends upon what the task that is taking place. So when it requires a lot of processing then instead of using threading it is better to use the Multiprocessing.
