@@ -1,0 +1,1 @@
+This is a folder for learning on different topics of python mainly sourced from Corey Schaefer's channel, Krish Naik's channel.
