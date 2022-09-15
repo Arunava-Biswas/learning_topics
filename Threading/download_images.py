@@ -25,7 +25,7 @@ t1 = time.perf_counter()
 
 # if we do it manually through a loop
 # here download happens one at a time
-# the time taken here is 23 seconds
+# the time taken here is 12 seconds
 '''
 for img_url in img_urls:
     img_bytes = requests.get(img_url).content
@@ -48,8 +48,9 @@ def download_image(img_url):
 
 
 # Now creating a thread pool and map the list of URLs using the function
-# the time taken is 8 seconds
-with concurrent.futures.ThreadPoolExecutor() as executor:
+# The max_workers parameter is to define the number of threads we want to use as here it is 10
+# The time taken is 8 seconds
+with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
     executor.map(download_image, img_urls)
 
 
