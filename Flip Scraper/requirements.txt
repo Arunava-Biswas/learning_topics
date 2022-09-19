@@ -1,11 +1,11 @@
 beautifulsoup4
 certifi
-charset-normalizer
 click
 colorama
 dnspython
 Flask
 Flask-Cors
+gunicorn
 idna
 importlib-metadata
 itsdangerous
