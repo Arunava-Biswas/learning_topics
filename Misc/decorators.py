@@ -1,6 +1,6 @@
 # Decorators
 
-# mainly used in flusk and django
+# mainly used in flask and django
 
 
 # function copy
@@ -33,7 +33,7 @@ print("\n")
 # closure
 
 # whenever we write function inside a function then it is called closure function.
-# in closure we are able to provide whatever input we want into the main function and also we can define our inner function inside that specific function we can also use that particular variable that is available in the main function.
+# in closure, we are able to provide whatever input we want into the main function, and also we can define our inner function inside that specific function we can also use that particular variable that is available in the main function.
 
 '''
 def main_welcome(msg):
